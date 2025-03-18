@@ -1,0 +1,23 @@
+CREATE TABLE placeholder_test (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL
+);
+
+insert:
+INSERT INTO placeholder_test (
+title
+)
+VALUES ?;
+
+selectAll:
+SELECT *
+FROM placeholder_test;
+
+selectById:
+SELECT *
+FROM placeholder_test
+WHERE id = :id;
+
+deleteAll:
+DELETE
+FROM placeholder_test;

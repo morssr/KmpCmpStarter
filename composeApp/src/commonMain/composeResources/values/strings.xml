@@ -2,5 +2,18 @@
     <string name="app_name">KmpCmpStarterSample</string>
     <string name="hello_world">Hello world!</string>
     <string name="click_me">Click me!</string>
+    <string name="add">Add</string>
     <string name="compose">Compose</string>
+    <string name="resources">Resources</string>
+    <string name="random_users">Random users</string>
+    <string name="error">Error</string>
+    <string name="empty_random_users_state">No users available. Click on the Add+ button to fetch new random user.</string>
+    <string name="error_random_users_state">Error loading image</string>
+
+    <!--  Content Description  -->
+    <string name="cd_back">back</string>
+    <string name="cd_thumbnail">thumbnail</string>
+    <string name="cd_add_new_random_users">add new random user</string>
+    <string name="cd_delete_all_random_users">delete all users</string>
+
 </resources>

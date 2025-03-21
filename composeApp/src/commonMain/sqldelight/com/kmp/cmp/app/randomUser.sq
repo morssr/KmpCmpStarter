@@ -1,0 +1,29 @@
+CREATE TABLE randomUser (
+    id TEXT NOT NULL PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    thumbnail TEXT NOT NULL
+);
+
+selectAllRandomUsers:
+SELECT *
+FROM randomUser;
+
+selectRandomUserById:
+SELECT *
+FROM randomUser
+WHERE id = :id;
+
+insertRandomUser:
+INSERT INTO randomUser (
+id,
+first_name,
+last_name,
+age,
+thumbnail)
+VALUES ?;
+
+deleteAllRandomUsers:
+DELETE
+FROM randomUser;

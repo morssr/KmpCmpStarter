@@ -9,6 +9,10 @@ import androidx.navigation.compose.rememberNavController
 import com.kmp.cmp.app.presentation.common.theme.AppTheme
 import com.kmp.cmp.app.presentation.home.HomeScreenRoute
 import com.kmp.cmp.app.presentation.home.homeScreenDestination
+import com.kmp.cmp.app.presentation.randomusers.RandomUsersRoute
+import com.kmp.cmp.app.presentation.randomusers.randomUsersDestination
+import com.kmp.cmp.app.presentation.resources.ResourcesScreenRoute
+import com.kmp.cmp.app.presentation.resources.resourcesDestination
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -22,7 +26,12 @@ fun AppUI() {
                 navController = navController,
                 startDestination = HomeScreenRoute,
             ) {
-                homeScreenDestination()
+                homeScreenDestination(
+                    onNavigateToResources = { navController.navigate(ResourcesScreenRoute) },
+                    onNavigateToRandomUsers = { navController.navigate(RandomUsersRoute) }
+                )
+                resourcesDestination(onNavigateBack = { navController.popBackStack() })
+                randomUsersDestination(onNavigateBack = { navController.popBackStack() })
             }
         }
     }

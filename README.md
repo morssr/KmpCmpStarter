@@ -33,19 +33,6 @@ Clone the repository:
 git clone https://github.com/morssr/KmpCmpStarter.git
 ```
 
-Switch branches based on your need:
-```bash
-# For the template branch
-git checkout main
-
-# For the sample application branch
-git checkout sample-app
-```
-
-Open the project:
-- **Android**: Open the project in Android Studio.
-- **iOS**: Open the `iosApp` directory in Xcode.
-
 ## Resources
 - [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
 - [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)

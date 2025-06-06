@@ -13,6 +13,7 @@ plugins {
 }
 
 kotlin {
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -119,6 +120,8 @@ dependencies {
     debugImplementation(compose.uiTooling)
     androidTestImplementation(libs.androidx.test.compose.junit4)
     debugImplementation(libs.androidx.test.compose.manifets)
+    commonMainApi("dev.icerock.moko:geo-compose:0.8.0")
+
 }
 
 sqldelight {

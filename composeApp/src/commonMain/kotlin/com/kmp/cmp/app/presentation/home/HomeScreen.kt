@@ -1,33 +1,28 @@
 package com.kmp.cmp.app.presentation.home
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.kmp.cmp.app.Greeting
-import kmpcmpstarter.composeapp.generated.resources.Res
-import kmpcmpstarter.composeapp.generated.resources.click_me
-import kmpcmpstarter.composeapp.generated.resources.compose
-import kmpcmpstarter.composeapp.generated.resources.compose_multiplatform
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.Serializable
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Serializable
@@ -58,23 +53,36 @@ fun HomeScreenContent(
     state: HomeScreenState,
     modifier: Modifier = Modifier
 ) {
-    var showContent by remember { mutableStateOf(false) }
-    Column(
-        modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(state.location)
+    val lazyListState = rememberLazyListState()
 
-        Spacer(Modifier.height(16.dp))
-
-        Button(onClick = { showContent = !showContent }) {
-            Text(stringResource(Res.string.click_me))
+    LaunchedEffect(key1 = state.locationsList) {
+        if (state.locationsList.isNotEmpty()) {
+            lazyListState.animateScrollToItem(state.locationsList.lastIndex)
         }
-        AnimatedVisibility(showContent) {
-            val greeting = remember { Greeting().greet() }
-            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Image(painterResource(Res.drawable.compose_multiplatform), null)
-                Text("${stringResource(Res.string.compose)} ${state.placeholderString}: $greeting")
+    }
+    LazyColumn(
+        state = lazyListState,
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.fillMaxSize()
+    ) {
+        items(items = state.locationsList) {
+            Column {
+                Card {
+                    Text(
+                        text = "Coordinates: ${it.latitude} | ${it.longitude}",
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .padding(top = 8.dp)
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        text = "Time: ${it.time}",
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .padding(bottom = 8.dp)
+                    )
+                }
             }
         }
     }

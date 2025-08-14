@@ -18,8 +18,14 @@ class HomeViewModel(
     init {
         log.d { "init() called" }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        log.d { "onCleared() called" }
+//        locationTracker.stopTracking()
+    }
 }
 
 data class HomeScreenState(
-    val placeholderString : String = "Home Screen"
+    val placeholderString: String = "Home Screen",
 )

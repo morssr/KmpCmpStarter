@@ -59,27 +59,20 @@ fun HomeScreenContent(
     onNavigateToResources: () -> Unit = {},
     onNavigateToRandomUsers: () -> Unit = {}
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
-        Spacer(Modifier.padding(12.dp))
-
-        Button(
-            onNavigateToResources,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        ) {
-            Text(stringResource(Res.string.resources))
+    var showContent by remember { mutableStateOf(false) }
+    Column(
+        modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = { showContent = !showContent }) {
+            Text(stringResource(Res.string.click_me))
         }
-
-        Spacer(Modifier.padding(12.dp))
-
-        Button(
-            onNavigateToRandomUsers,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        ) {
-            Text(stringResource(Res.string.random_users))
+        AnimatedVisibility(showContent) {
+            val greeting = remember { Greeting().greet() }
+            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Image(painterResource(Res.drawable.compose_multiplatform), null)
+                Text("${stringResource(Res.string.compose)} ${state.placeholderString}: $greeting")
+            }
         }
     }
 }

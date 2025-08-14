@@ -209,7 +209,7 @@ fun RandomUsersGrid(
         modifier = modifier
     ) {
         items(users) {
-            RandomUserUiModelGridItem(
+            RandomUserGridItem(
                 it,
                 Modifier.fillMaxSize()
             )
@@ -218,7 +218,7 @@ fun RandomUsersGrid(
 }
 
 @Composable
-fun RandomUserUiModelGridItem(
+fun RandomUserGridItem(
     user: RandomUserUiModel,
     modifier: Modifier = Modifier
 ) {
